@@ -1,4 +1,5 @@
 import "./MainPage.css";
+import { Link } from "react-router-dom";
 // при выборе темы
 
 export default function MainPage({ themes }) {
@@ -18,7 +19,9 @@ export default function MainPage({ themes }) {
         })}
       </div>
       <h2>or</h2>
-      <div className="theme-card">get random words from all the topics</div>
+      <Link to="/learning/all" className="router-link">
+        <div className="theme-card">get random words from all the topics</div>
+      </Link>
     </div>
   );
 }

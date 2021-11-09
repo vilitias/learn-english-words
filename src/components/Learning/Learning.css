@@ -1,0 +1,52 @@
+.learning-screen-main {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 400px;
+  height: 250px;
+  border-radius: 5px;
+  border: 1px solid brown;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-word {
+  font-size: 35px;
+  font-weight: 500;
+  user-select: none;
+}
+.card-word:hover {
+  cursor: pointer;
+}
+
+.change-card-buttons {
+  width: 50px;
+  background-color: white;
+  border: 1px solid brown;
+}
+
+.change-card-text {
+  font-size: 15px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+.translation-visible {
+  visibility: visible;
+}
+
+.translation-hidden {
+  visibility: hidden;
+}
+
+.card-translation {
+  color: brown;
+}
+
+button {
+  cursor: pointer;
+}
