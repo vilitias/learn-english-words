@@ -451,8 +451,12 @@ function App() {
         <Route path="/" element={<MainPage themes={themes} />} />
 
         <Route path="/learning/all" element={<Learning words={allWords} />} />
-        <Route path="/learning/body" element={<Learning />} />
-        <Route path="/learning/appearance" element={<Learning />} />
+
+        {themes.map((theme) => {
+          return <Route path={`/learning/${theme}`} element={<Learning />} />;
+        })}
+        {/* <Route path="/learning/body" element={<Learning />} />
+        <Route path="/learning/appearance" element={<Learning />} /> */}
       </Routes>
     </div>
   );

@@ -12,9 +12,11 @@ export default function MainPage({ themes }) {
       <div className="themes-wrapper">
         {themes.map((theme) => {
           return (
-            <div key={theme} className="theme-card">
-              {theme}
-            </div>
+            <Link className="router-link" to={`/learning/${theme}`}>
+              <div key={theme} className="theme-card">
+                {theme}
+              </div>
+            </Link>
           );
         })}
       </div>
