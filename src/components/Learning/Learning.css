@@ -50,3 +50,6 @@
 button {
   cursor: pointer;
 }
+.arrow-rotated {
+  transform: rotate(180deg);
+}

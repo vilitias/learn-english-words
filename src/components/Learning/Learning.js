@@ -34,7 +34,22 @@ export default function Learning({ words }) {
   return (
     <div className="learning-screen-main">
       <button className="change-card-buttons" onClick={previousWord}>
-        <span className="change-card-text">previous </span>
+        {/* <span className="change-card-text"> */}
+        <svg
+          className="arrow-rotated"
+          enable-background="new 0 0 32 32"
+          viewBox="0 0 32 32"
+        >
+          <polygon
+            fill="none"
+            points="26,16 6,3 6,29 "
+            stroke="#000000"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="2"
+          />
+        </svg>{" "}
+        {/* </span> */}
       </button>
       <div className="card">
         <ReactTooltip
@@ -71,7 +86,18 @@ export default function Learning({ words }) {
       </div>
       <button className="change-card-buttons" onClick={nextWord}>
         {" "}
-        <span className="change-card-text">next</span>{" "}
+        {/* <span className="change-card-text"> */}
+        <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32">
+          <polygon
+            fill="none"
+            points="26,16 6,3 6,29 "
+            stroke="#000000"
+            stroke-linejoin="round"
+            stroke-miterlimit="10"
+            stroke-width="2"
+          />
+        </svg>{" "}
+        {/* </span>{" "} */}
       </button>
     </div>
   );
