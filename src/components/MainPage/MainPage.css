@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap");
+
 .MainPage {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
   text-align: center;
 }
 .main-title {
-  color: rgb(200, 133, 87);
+  font-family: "Mochiy Pop One", sans-serif;
   font-weight: 300;
   font-size: 27px;
   padding: 20px 0;

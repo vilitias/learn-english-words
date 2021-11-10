@@ -6,7 +6,7 @@ import MainPage from "./components/MainPage/MainPage";
 import Learning from "./components/Learning/Learning";
 
 function App() {
-  const [themes, setThemes] = useState(["body", "appearance"]);
+  const [themes, setThemes] = useState(["body", "appearance and character"]);
   const [allWords, setAllWords] = useState([
     {
       _id: "618248281db151eec6767f87",
@@ -423,6 +423,7 @@ function App() {
     },
   ]);
   const [learnedWords, setLearnedWords] = useState([]);
+
   // useEffect(() => {
   //   fetch(`https://engl-tab.herokuapp.com/themes`)
   //     .then((res) => res.json())
@@ -433,7 +434,9 @@ function App() {
   //       }
   //       setThemes(updateThemes);
   //     });
+  //   }, []);
 
+  // useEffect(() => {
   //   fetch(`https://engl-tab.herokuapp.com`)
   //     .then((res) => res.json())
   //     .then((data) => {
@@ -450,7 +453,16 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage themes={themes} />} />
 
-        <Route path="/learning/all" element={<Learning words={allWords} />} />
+        <Route
+          path="/learning/all"
+          element={
+            <Learning
+              words={allWords}
+              learnedWords={learnedWords}
+              setLearnedWords={setLearnedWords}
+            />
+          }
+        />
 
         {themes.map((theme) => {
           return <Route path={`/learning/${theme}`} element={<Learning />} />;

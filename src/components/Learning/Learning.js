@@ -1,27 +1,24 @@
 import "./Learning.css";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
+import { ReactComponent as ArrowIcon } from "../../images/arrowIcon.svg";
 
-export default function Learning({ words }) {
+export default function Learning({ words, setLearnedWords, learnedWords }) {
   let [index, setIndex] = useState(0);
-  // const [words, setWords] = useState([
-  //   {
-  //     _id: "618248281db151eec6767f87",
-  //     englWord: "man",
-  //     englTranscription: "[mæn]",
-  //     ruslWord: "человек, мужчина",
-  //     theme: "body",
-  //   },
-  // ]);
+
   let [isTranslationVisible, setIsTranslationVisible] = useState(false);
 
   const nextWord = () => {
     if (isTranslationVisible) {
       setIsTranslationVisible(false);
     }
+    if (learnedWords) setLearnedWords([...learnedWords, words[index]]);
     index++;
     setIndex(index);
   };
+
+  useEffect(() => console.log(learnedWords), [learnedWords]);
+
   const previousWord = () => {
     if (index > 0) {
       if (isTranslationVisible) {
@@ -34,22 +31,7 @@ export default function Learning({ words }) {
   return (
     <div className="learning-screen-main">
       <button className="change-card-buttons" onClick={previousWord}>
-        {/* <span className="change-card-text"> */}
-        <svg
-          className="arrow-rotated"
-          enable-background="new 0 0 32 32"
-          viewBox="0 0 32 32"
-        >
-          <polygon
-            fill="none"
-            points="26,16 6,3 6,29 "
-            stroke="#000000"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="2"
-          />
-        </svg>{" "}
-        {/* </span> */}
+        <ArrowIcon className="arrow-rotated" />
       </button>
       <div className="card">
         <ReactTooltip
@@ -85,19 +67,7 @@ export default function Learning({ words }) {
         </p>
       </div>
       <button className="change-card-buttons" onClick={nextWord}>
-        {" "}
-        {/* <span className="change-card-text"> */}
-        <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32">
-          <polygon
-            fill="none"
-            points="26,16 6,3 6,29 "
-            stroke="#000000"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="2"
-          />
-        </svg>{" "}
-        {/* </span>{" "} */}
+        <ArrowIcon />
       </button>
     </div>
   );
