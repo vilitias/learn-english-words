@@ -5,33 +5,52 @@ import ReactTooltip from "react-tooltip";
 import { ReactComponent as ArrowIcon } from "../../images/arrowIcon.svg";
 
 export default function Learning({ words, setLearnedWords, learnedWords }) {
-  let [index, setIndex] = useState(0);
+  let [currentId, setCurrentId] = useState(null);
+
+  useEffect(() => {
+    if (!currentId && words.length > 0) {
+      setCurrentId(words[0]._id);
+    }
+  }, [words]);
 
   let [isTranslationVisible, setIsTranslationVisible] = useState(false);
 
-  const nextWord = () => {
+  const currentIndex = words.findIndex((el) => {
+    return el._id === currentId;
+  });
+  const currentWord = currentIndex >= 0 ? words[currentIndex] : null;
+  const nextWord = words[currentIndex + 1];
+  const prevWord = words[currentIndex - 1];
+
+  const goToNextWord = () => {
     if (isTranslationVisible) {
       setIsTranslationVisible(false);
     }
-    setLearnedWords(uniqBy([...learnedWords, words[index]], "_id"));
-    index++;
-    setIndex(index);
+    setLearnedWords(uniqBy([...learnedWords, currentWord], "_id"));
+    if (nextWord) {
+      setCurrentId(nextWord._id);
+    } else {
+      alert("No more words!");
+    }
   };
 
   // useEffect(() => console.log(learnedWords), [learnedWords]);
 
   const previousWord = () => {
-    if (index > 0) {
+    if (prevWord) {
       if (isTranslationVisible) {
         setIsTranslationVisible(false);
       }
-      index--;
-      setIndex(index);
+      setCurrentId(prevWord._id);
     }
   };
+
+  if (!currentWord) {
+    return null;
+  }
   return (
     <div className="learning-screen-main">
-      <button className="change-card-buttons" onClick={previousWord}>
+      <button className="change-card-button-left" onClick={previousWord}>
         <ArrowIcon className="arrow-rotated" />
       </button>
       <div className="card">
@@ -49,11 +68,9 @@ export default function Learning({ words, setLearnedWords, learnedWords }) {
           data-for="translationTip"
           onClick={() => setIsTranslationVisible(!isTranslationVisible)}
         >
-          {words[`${index}`].englWord}
+          {currentWord.englWord}
         </p>
-        <p className="card-transcription">
-          {words[`${index}`].englTranscription}
-        </p>
+        <p className="card-transcription">{currentWord.englTranscription}</p>
 
         <p
           className={`card-translation 
@@ -64,10 +81,10 @@ export default function Learning({ words, setLearnedWords, learnedWords }) {
               }
           `}
         >
-          {words[`${index}`].ruslWord}
+          {currentWord.ruslWord}
         </p>
       </div>
-      <button className="change-card-buttons" onClick={nextWord}>
+      <button className="change-card-button-right" onClick={goToNextWord}>
         <ArrowIcon />
       </button>
     </div>
