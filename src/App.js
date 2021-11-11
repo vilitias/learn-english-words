@@ -4,9 +4,15 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import Learning from "./components/Learning/Learning";
+import { kebabCase } from "lodash";
 
 function App() {
-  const [themes, setThemes] = useState(["body", "appearance and character"]);
+  const [themes, setThemes] = useState([
+    { themeName: "body", isAvailable: true },
+    { themeName: "Appearance and character", isAvailable: true },
+    { themeName: "nature", isAvailable: true },
+    { themeName: "food", isAvailable: true },
+  ]);
   const [allWords, setAllWords] = useState([
     {
       _id: "618248281db151eec6767f87",
@@ -424,13 +430,30 @@ function App() {
   ]);
   const [learnedWords, setLearnedWords] = useState([]);
 
+  const updatedThemes = themes.map((themeObj) => {
+    const updatedObj = {
+      ...themeObj,
+      themeWords: allWords.filter(
+        (wordObj) => wordObj.theme === themeObj.themeName
+      ),
+    };
+    return updatedObj;
+  });
+
+  // const wordsByTheme = themes.map((obj) => {
+  //   return {
+  //     themeName: obj.themeName,
+  //     words: allWords.filter((wordObj) => wordObj.theme === obj.themeName),
+  //   };
+  // });
+
   // useEffect(() => {
   //   fetch(`https://engl-tab.herokuapp.com/themes`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       const updateThemes = [...themes];
   //       for (let i = 0; i < data.length; i++) {
-  //         updateThemes.push(data[i].theme);
+  //         updateThemes.push({themeName: data[i].theme, isAvailable: true});
   //       }
   //       setThemes(updateThemes);
   //     });
@@ -464,8 +487,19 @@ function App() {
           }
         />
 
-        {themes.map((theme) => {
-          return <Route path={`/learning/${theme}`} element={<Learning />} />;
+        {updatedThemes.map((themeObj) => {
+          return (
+            <Route
+              path={`/learning/${kebabCase(themeObj.themeName)}`}
+              element={
+                <Learning
+                  words={themeObj.themeWords}
+                  learnedWords={learnedWords}
+                  setLearnedWords={setLearnedWords}
+                />
+              }
+            />
+          );
         })}
         {/* <Route path="/learning/body" element={<Learning />} />
         <Route path="/learning/appearance" element={<Learning />} /> */}

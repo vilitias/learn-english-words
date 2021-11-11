@@ -6,11 +6,11 @@ body {
 
 .App {
   max-width: 800px;
-  min-height: 50vh;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 251, 245);
+  /* background-color: rgb(255, 251, 245); */
   padding-bottom: 30px;
 }

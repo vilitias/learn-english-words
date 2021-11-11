@@ -1,5 +1,6 @@
 import "./Learning.css";
 import React, { useEffect, useState } from "react";
+import { uniqBy } from "lodash";
 import ReactTooltip from "react-tooltip";
 import { ReactComponent as ArrowIcon } from "../../images/arrowIcon.svg";
 
@@ -12,12 +13,12 @@ export default function Learning({ words, setLearnedWords, learnedWords }) {
     if (isTranslationVisible) {
       setIsTranslationVisible(false);
     }
-    if (learnedWords) setLearnedWords([...learnedWords, words[index]]);
+    setLearnedWords(uniqBy([...learnedWords, words[index]], "_id"));
     index++;
     setIndex(index);
   };
 
-  useEffect(() => console.log(learnedWords), [learnedWords]);
+  // useEffect(() => console.log(learnedWords), [learnedWords]);
 
   const previousWord = () => {
     if (index > 0) {
