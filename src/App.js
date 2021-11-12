@@ -7,12 +7,13 @@ import Learning from "./components/Learning/Learning";
 import { kebabCase } from "lodash";
 
 function App() {
-  const [themes, setThemes] = useState([]);
+  const [themes, setThemes] = useState([
+    { themeName: "body", isAvailable: true },
+    { themeName: "Appearance and character", isAvailable: true },
+    { themeName: "nature", isAvailable: true },
+    { themeName: "food", isAvailable: true },
+  ]);
 
-  // { themeName: "body", isAvailable: true },
-  //   { themeName: "Appearance and character", isAvailable: true },
-  //   { themeName: "nature", isAvailable: true },
-  //   { themeName: "food", isAvailable: true },
   const [allWords, setAllWords] = useState([]);
 
   // {
@@ -455,16 +456,16 @@ function App() {
     return updatedObj;
   });
 
-  useEffect(() => {
-    fetch(`https://engl-tab.herokuapp.com/themes`)
-      .then((res) => res.json())
-      .then((data) => {
-        const updatedThemes = data.map((obj) => {
-          return { themeName: obj.theme, isAvailable: true };
-        });
-        setThemes(updatedThemes);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`https://engl-tab.herokuapp.com/themes`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const updatedThemes = data.map((obj) => {
+  //         return { themeName: obj.theme, isAvailable: true };
+  //       });
+  //       setThemes(updatedThemes);
+  //     });
+  // }, []);
 
   useEffect(() => {
     fetch(`https://engl-tab.herokuapp.com`)

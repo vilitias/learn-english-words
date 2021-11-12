@@ -89,3 +89,24 @@ h2 {
   text-decoration: none;
   color: black;
 }
+
+@media screen and (max-width: 810px) {
+  .themes-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .theme-card {
+    margin: 5px;
+  }
+
+  .theme-card-all {
+    width: 90%;
+  }
+}
+
+/* max-width: 800 px;
+min-width: 400 px;
+width: 80%;
+height: 80 vh; */

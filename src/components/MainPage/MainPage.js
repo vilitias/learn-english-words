@@ -28,9 +28,7 @@ export default function MainPage({ themes }) {
       </div>
       <h2>or</h2>
       <Link to="/learning/all" className="router-link">
-        <div className="theme-card-all">
-          get random words from all the topics
-        </div>
+        <div className="theme-card-all">get words from all topics</div>
       </Link>
     </div>
   );
